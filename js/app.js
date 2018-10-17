@@ -15,4 +15,22 @@ function populateThat() {
     
 }
 
+function setVoice() {
+    let voiceToBeUsed;
+    let userDecision = this.value;
+    voices.forEach(voice => {
+        if (voice.name === userDecision) {
+            voice = voiceToBeUsed;
+        }
+    })
+    
+    msg.voice = this.value;
+}
+
+function talkToMe() {
+//    speechSynthesis.speak(msg);
+}
+
 speechSynthesis.addEventListener('voiceschanged', populateThat);
+speakButton.addEventListener('click', talkToMe);
+voicesDropdown.addEventListener('change', setVoice);
