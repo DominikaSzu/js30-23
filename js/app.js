@@ -36,10 +36,11 @@ function toggle(startOver = true) {
     }
 }
 
-function talkToMe() {
-//    speechSynthesis.speak(msg);
+function setOption() {
+    msg[this.name] = this.value;
+    toggle();
 }
 
 speechSynthesis.addEventListener('voiceschanged', populateThat);
-speakButton.addEventListener('click', talkToMe);
 voicesDropdown.addEventListener('change', setVoice);
+options.forEach(option => option.addEventListener('change', setOption));
