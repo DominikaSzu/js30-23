@@ -16,15 +16,24 @@ function populateThat() {
 }
 
 function setVoice() {
-    let voiceToBeUsed;
-    let userDecision = this.value;
-    voices.forEach(voice => {
-        if (voice.name === userDecision) {
-            voice = voiceToBeUsed;
-        }
-    })
-    
-    msg.voice = this.value;
+//    let voiceToBeUsed;
+//    let userDecision = this.value;
+//    voices.forEach(voice => {
+//        if (voice.name === userDecision) {
+//            voice = voiceToBeUsed;
+//        }
+//    })
+//    
+//    msg.voice = this.value;
+    msg.voice = voices.find(voice => voice.name === this.value);
+    toggle();
+}
+
+function toggle(startOver = true) {
+    speechSynthesis.cancel();
+    if (startOver === true) {
+        speechSynthesis.speak(msg);
+    }
 }
 
 function talkToMe() {
