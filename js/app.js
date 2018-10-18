@@ -9,7 +9,9 @@ msg.text = document.querySelector('[name="text"]').value;
 
 function populateThat() {
     voices = this.getVoices();
-    const voiceOptions = voices.map(voice => `<option value="${voice.name}">${voice.name} (${voice.lang})</option>`).join('');
+    const voiceOptions = voices
+    .filter(voice => voice.lang.includes('en'))
+    .map(voice => `<option value="${voice.name}">${voice.name} (${voice.lang})</option>`).join('');
     voicesDropdown.innerHTML = voiceOptions;
     
 }
@@ -35,4 +37,4 @@ speechSynthesis.addEventListener('voiceschanged', populateThat);
 voicesDropdown.addEventListener('change', setVoice);
 options.forEach(option => option.addEventListener('change', setOption));
 speakButton.addEventListener('click', toggle);
-stopButton.addEventListener('click', ()=> speechSynthesis.cancel());
+stopButton.addEventListener('click', ()=> toggle(false));
